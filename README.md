@@ -1,97 +1,66 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Driver App – React Native (Android)
 
-# Getting Started
+Aplikasi driver sederhana yang memenuhi kriteria skill test fullstack developer. Fitur utama: daftar pekerjaan (trip) dengan dua stop (pickup/dropoff), validasi wajib foto dan GPS di setiap stop, single‑tasking, absensi biometrik, serta UI modern dengan progress bar.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+##  Demo Video
 
-## Step 1: Start Metro
+[Klik di sini untuk menonton video demo]([https://drive.google.com/file/d/VIDEO_ID/view?usp=sharing](https://drive.google.com/file/d/114cxQY40i1NpnMhS856HwFSVHyc6Mf5Z/view?usp=sharing))  
+> *Pastikan Anda menonton dalam resolusi tinggi untuk melihat semua fitur.*
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+##  Fitur Utama
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+-  **Manajemen Pekerjaan** – Daftar trip dengan status (tersedia, sedang berjalan, selesai). Hanya satu trip yang bisa dikerjakan dalam satu waktu.
+-  **Proses Trip** – Setiap trip terdiri dari 2 stop (Pickup → Dropoff). Driver harus menyelesaikan **foto** dan **konfirmasi GPS** di setiap stop sebelum melanjutkan.
+-  **Kamera (simulasi)** – Menggunakan `react-native-vision-camera` (simulasi untuk memudahkan testing).
+-  **GPS** – Mengambil lokasi aktual perangkat, membandingkan jarak dengan target stop (validasi radius 100m). Peringatan jika GPS mati.
+-  **Biometrik** – Absensi driver menggunakan fingerprint / Face ID. Fallback jika perangkat tidak mendukung.
+-  **State Management** – React Context untuk trip dan autentikasi.
+-  **UI Modern** – Gradien, kartu dengan bayangan, ikon dari `react-native-vector-icons`, progress bar.
 
-```sh
-# Using npm
-npm start
+##  Teknologi yang Digunakan
 
-# OR using Yarn
-yarn start
-```
+- React Native 0.84.1 (CLI)
+- TypeScript
+- React Navigation (Stack)
+- React Native Vector Icons
+- React Native Linear Gradient
+- React Native Vision Camera
+- React Native Geolocation
+- React Native Biometrics
+- React Native MMKV (persistensi autentikasi)
 
-## Step 2: Build and run your app
+##  Menjalankan Aplikasi (Development)
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+1. Pastikan lingkungan pengembangan React Native siap (Node.js, JDK 17, Android SDK).
+2. Clone repository dan install dependensi:
+   ```bash
+   git clone https://github.com/username/driver-app.git
+   cd driver-app
+   npm install
+   ```
+3. Jalankan emulator Android atau hubungkan perangkat fisik.
+4. Build dan jalankan:
+   ```
+   npx react-native run-android
+   ```
+##  APK (Debug)
 
-### Android
+   APK siap pakai dapat diunduh di sini:
+   [DriverApp.apk](https://drive.google.com/file/d/1faHtogm1_7nfIgSH69uvQT7nF1VqEDPl/view?usp=sharing)
 
-```sh
-# Using npm
-npm run android
+> * Aplikasi di-build dengan konfigurasi debug. Pastikan Anda mengizinkan instalasi dari sumber tidak dikenal.*
 
-# OR using Yarn
-yarn android
-```
+##  Catatan Implementasi
 
-### iOS
+- Kamera: Saat ini menggunakan simulasi (Alert). Untuk integrasi kamera asli, uncomment kode di handleTakePhoto dan tambahkan CameraScreen.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+- GPS: Validasi jarak menggunakan rumus Haversine. Di emulator, atur lokasi dummy di Extended Controls.
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+- Biometrik: Di emulator Android, gunakan Extended Controls → Fingerprint untuk menguji.
 
-```sh
-bundle install
-```
+- NFC (opsional): Tidak diimplementasikan dalam versi ini.
 
-Then, and every time you update your native dependencies, run:
+## Lisensi
 
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Dibuat untuk keperluan uji keterampilan.
+© 2026-Alba
